@@ -3,6 +3,9 @@ const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 const mongoose = require('mongoose');
 
 const importRoute = require('./routes/import');
@@ -23,9 +26,12 @@ app.use(fileUpload({
 
 app.use(importRoute);
 
+const port = process.env.PORT;
+console.log(`Your port is ${port}`);
+
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true })
     .then(() => {
-        app.listen(8080);
+        app.listen(port);
     })
     .catch(err => console.log(err));
 
