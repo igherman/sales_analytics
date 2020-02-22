@@ -22,7 +22,8 @@ exports.postImport = (req, res, next) => {
                     processingResult = 'User import processed.';
                     break;
                 case 'products':
-                    processingResult = 'Products import not supported.';
+                    importService.importProducts(data);
+                    processingResult = 'Products import processed.';
                     break;
                 case 'transactions':
                     processingResult = 'Transactions import not supported.';
